@@ -1,0 +1,9 @@
+name: kitpvp
+version: '${version}'
+
+main: click.mevi.dev.kitpvp.Kitpvp
+api-version: '1.21.8'
+load: POSTWORLD
+
+authors: [ Mehbi ]
+website: https://github.com/Mehbi/
