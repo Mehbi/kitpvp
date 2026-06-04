@@ -1,18 +1,18 @@
-package click.mevi.dev.kitpvp.objects;
+package click.mevi.dev.kitpvp.api.objects;
 
 import click.mevi.dev.kitpvp.mc.items.PluginItem;
+import click.mevi.dev.kitpvp.mc.items.PluginItemListener;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.PlayerInventory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Kit {
     private final String identifier;
     private final Component displayName;
     private final Material showItemMaterial;
-    private List<PluginItem> items;
-    private List<Component> description;
 
     public Kit(String identifier, Component displayName, Material showItemMaterial) {
         this.identifier = identifier;
@@ -32,20 +32,13 @@ public abstract class Kit {
         return showItemMaterial;
     }
 
-    public List<PluginItem> getItems() {
-        return items;
-    }
+    public abstract List<PluginItem> getItems();
 
-    public List<Component> getDescription() {
-        return description;
-    }
+    public abstract List<Component> getDescription();
 
-
-    public void setItems(List<PluginItem> items) {
-        this.items = items;
-    }
-
-    public void setDescription(List<Component> description) {
-        this.description = description;
+    public void apply(Player player) {
+        for (PluginItem pluginItem : getItems()) {
+            pluginItem.give(player);
+        }
     }
 }
